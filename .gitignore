@@ -11,6 +11,8 @@ Makefile
 # Vim
 *.swp
 
+.cache/
+
 # Prerequisites
 *.d
 
