@@ -2,7 +2,7 @@
 
 | **Author** | **Date**       | **Version** |
 |------------|----------------|-------------|
-| @MnM72809  | 2025-07-21     | 0.1.0       |
+| @MnM72809  | 2025-07-24     | 0.1.1       |
 
 A simple, fast, terminal-based viewer for your environment variables.
 
@@ -37,7 +37,7 @@ This is the initial goal: a simple, two-panel layout.
 │                                                    │
 └────────────────────────────────────────────────────┘
 
--- Press [Enter] to view value, [Q] to quit --
+-- Press [Enter] to view value, [Esc] to quit --
 ```
 
 <!--
