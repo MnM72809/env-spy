@@ -10,7 +10,7 @@ A simple, fast, terminal-based viewer for your environment variables.
 
 ## The Core Idea
 
-This is a command-line tool written in C to help you quickly see and search through the environment variables in your current shell session. It solves the problem of trying to find a specific variable[...]
+This is a command-line tool written in C to help you quickly see and search through the environment variables in your current shell session. It solves the problem of trying to find a specific variable or read long ones like `PATH` in a messy terminal output.
 
 `env-spy` provides a clean, interactive list that you can filter just by typing.
 
