@@ -12,6 +12,7 @@ Makefile
 *.swp
 
 .cache/
+tags
 
 # Prerequisites
 *.d
