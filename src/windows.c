@@ -2,6 +2,7 @@
 #include <stdbool.h>
 
 #include "windows.h"
+#include "filter.h"
 
 void initialize_ncurses()
 {
@@ -69,4 +70,31 @@ AppWindows create_windows()
 	};
 
 	return app_windows;
+}
+
+void initialize_windows(AppWindows *windows)
+{
+    // Print a msg in the title bar
+	mvwprintw(windows->title_win, 1, 2, "Title");
+
+	// Print a msg in the status bar
+	mvwprintw(windows->status_bar_win, 0, 1, "Press [Esc] to quit");
+
+	// Filter init function
+	filter_setup(windows->filter_bar_win);
+
+
+	wnoutrefresh(windows->status_bar_win);
+	wnoutrefresh(windows->title_win);
+	
+    // Update the screen with all the changes
+	doupdate();
+
+	mv_cursor(windows->filter_bar_win, 0, 10);
+}
+
+void mv_cursor(WINDOW *win, int x, int y)
+{
+    wmove(win, x, y);
+	wrefresh(win);
 }

@@ -12,3 +12,5 @@ typedef struct {
 
 void initialize_ncurses();
 AppWindows create_windows();
+void initialize_windows(AppWindows *windows);
+void mv_cursor(WINDOW *win, int x, int y);

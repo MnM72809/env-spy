@@ -4,7 +4,6 @@
 void filter_setup(WINDOW *win)
 {
     // Print "Filter: " inside the filter window
-    mvwprintw(win, 0, 0, "Filter: ");
-
+    mvwprintw(win, 0, 2, "Filter: ");
 	wnoutrefresh(win);
 }
