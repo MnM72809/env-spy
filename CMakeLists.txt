@@ -7,6 +7,7 @@ add_executable(envspy.out
 		src/main.c
 		src/windows.c
 		src/filter.c
+		src/env_logic.c
 )
 
 target_link_libraries(envspy.out PRIVATE ${CURSES_LIBRARIES})
