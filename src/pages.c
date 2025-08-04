@@ -22,6 +22,8 @@ void print_keys() {
 		wprintw(windowsPtr->left_pane_win, "%s", key_to_print);
 		wnoutrefresh(windowsPtr->left_pane_win);
 	}
+
+	box(windowsPtr->left_pane_win, 0, 0);
 }
 
 void print_key_data() {
