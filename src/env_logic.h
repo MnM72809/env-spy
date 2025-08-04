@@ -15,3 +15,4 @@ typedef struct {
 void load_envvarlist(EnvVarList *list);
 EnvVar parse_var(char *env);
 bool add_to_list(EnvVarList *list, EnvVar *var);
+void free_envvarlist(EnvVarList *list);
