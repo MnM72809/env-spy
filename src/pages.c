@@ -19,7 +19,16 @@ void print_keys() {
 	for (int i = 0; i < evlist->count; i++) {
 		char *key_to_print = evlist->vars[i].key;
 		wmove(windowsPtr->left_pane_win, i + 1, 1);
+		// Highlight the key if it's currently selected
+		if (i == current_var_index) {
+			wattron(windowsPtr->left_pane_win, A_REVERSE);
+		}
+		// Print the key
 		wprintw(windowsPtr->left_pane_win, "%s", key_to_print);
+		// Turn off the highlight
+		if (i == current_var_index) {
+			wattroff(windowsPtr->left_pane_win, A_REVERSE);
+		}
 		wnoutrefresh(windowsPtr->left_pane_win);
 	}
 

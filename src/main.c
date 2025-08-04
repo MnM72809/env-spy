@@ -28,17 +28,24 @@ bool main_loop() {
 		} else if (ch == KEY_UP) // Up arrow key
 		{
 			current_var_index--;
+			if (current_var_index < 0) current_var_index = 0;
+
 			wclear(windowsPtr->right_pane_win);
 			box(windowsPtr->right_pane_win, 0, 0);
 			print_key_data();
 			wrefresh(windowsPtr->right_pane_win);
+			print_keys(); // For highlight
+			wrefresh(windowsPtr->left_pane_win);
 			continue; // TODO
 		} else if (ch == KEY_DOWN) {
 			current_var_index++;
+			if (current_var_index >= evlist->count) current_var_index = evlist->count - 1;
 			wclear(windowsPtr->right_pane_win);
 			box(windowsPtr->right_pane_win, 0, 0);
 			print_key_data();
 			wrefresh(windowsPtr->right_pane_win);
+			print_keys(); // For highlight
+			wrefresh(windowsPtr->left_pane_win);
 			continue; // TODO
 		}
 	}
