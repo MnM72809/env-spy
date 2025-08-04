@@ -1,3 +1,4 @@
 #pragma once
 
-void print_home();
+void print_keys();
+void print_key_data();

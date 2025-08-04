@@ -10,6 +10,7 @@
 
 AppWindows *windowsPtr = NULL;
 EnvVarList *evlist = NULL;
+int current_var_index = 0;
 
 bool main_loop() {
 	bool running = true;
@@ -42,14 +43,20 @@ int main() {
 
 	load_envvarlist(&list);
 
-	wmove(windows.left_pane_win, 1, 1);
-	wprintw(windows.left_pane_win, "%s: %s\n", list.vars->key,
-	        list.vars->value);
-	wrefresh(windows.left_pane_win);
-
 	evlist = &list;
 
-	print_home();
+	/*wmove(windows.left_pane_win, 1, 1);*/
+	/*wprintw(windows.left_pane_win, "%s: %s\n", list.vars->key,*/
+			/*list.vars->value);*/
+	/*wrefresh(windows.left_pane_win);*/
+
+	print_keys();
+	wmove(windows.left_pane_win, 1, 1);
+	wnoutrefresh(windows.left_pane_win);
+	doupdate();
+
+	// Display data
+	print_key_data();
 
 	bool success = main_loop();
 	if (!success) {
