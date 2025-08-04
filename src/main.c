@@ -25,6 +25,21 @@ bool main_loop() {
 		if (ch == 27 || ch == KEY_EXIT) // Exit key
 		{
 			break;
+		} else if (ch == KEY_UP) // Up arrow key
+		{
+			current_var_index--;
+			wclear(windowsPtr->right_pane_win);
+			box(windowsPtr->right_pane_win, 0, 0);
+			print_key_data();
+			wrefresh(windowsPtr->right_pane_win);
+			continue; // TODO
+		} else if (ch == KEY_DOWN) {
+			current_var_index++;
+			wclear(windowsPtr->right_pane_win);
+			box(windowsPtr->right_pane_win, 0, 0);
+			print_key_data();
+			wrefresh(windowsPtr->right_pane_win);
+			continue; // TODO
 		}
 	}
 	return true;
@@ -47,7 +62,7 @@ int main() {
 
 	/*wmove(windows.left_pane_win, 1, 1);*/
 	/*wprintw(windows.left_pane_win, "%s: %s\n", list.vars->key,*/
-			/*list.vars->value);*/
+	/*list.vars->value);*/
 	/*wrefresh(windows.left_pane_win);*/
 
 	print_keys();
@@ -57,6 +72,7 @@ int main() {
 
 	// Display data
 	print_key_data();
+	doupdate();
 
 	bool success = main_loop();
 	if (!success) {
