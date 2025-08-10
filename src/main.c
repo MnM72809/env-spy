@@ -12,6 +12,17 @@ AppWindows *windowsPtr = NULL;
 EnvVarList *evlist = NULL;
 int current_var_index = 0;
 
+#define up_down_process()                                                      \
+	do {                                                                       \
+		werase(windowsPtr->right_pane_win);                                    \
+		box(windowsPtr->right_pane_win, 0, 0);                                 \
+		print_key_data();                                                      \
+		wnoutrefresh(windowsPtr->right_pane_win);                              \
+		print_keys(); /* For highlight	*/                                      \
+		wnoutrefresh(windowsPtr->left_pane_win);                               \
+		doupdate();                                                            \
+	} while (0)
+
 bool main_loop() {
 	bool running = true;
 	int ch;
@@ -28,24 +39,17 @@ bool main_loop() {
 		} else if (ch == KEY_UP) // Up arrow key
 		{
 			current_var_index--;
-			if (current_var_index < 0) current_var_index = 0;
+			if (current_var_index < 0)
+				current_var_index = 0;
 
-			wclear(windowsPtr->right_pane_win);
-			box(windowsPtr->right_pane_win, 0, 0);
-			print_key_data();
-			wrefresh(windowsPtr->right_pane_win);
-			print_keys(); // For highlight
-			wrefresh(windowsPtr->left_pane_win);
+			up_down_process();
 			continue; // TODO
 		} else if (ch == KEY_DOWN) {
 			current_var_index++;
-			if (current_var_index >= evlist->count) current_var_index = evlist->count - 1;
-			wclear(windowsPtr->right_pane_win);
-			box(windowsPtr->right_pane_win, 0, 0);
-			print_key_data();
-			wrefresh(windowsPtr->right_pane_win);
-			print_keys(); // For highlight
-			wrefresh(windowsPtr->left_pane_win);
+			if (current_var_index >= evlist->count)
+				current_var_index = evlist->count - 1;
+
+			up_down_process();
 			continue; // TODO
 		}
 	}
