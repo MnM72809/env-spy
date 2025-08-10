@@ -16,36 +16,33 @@ This is a command-line tool written in C to help you quickly see and search thro
 
 ### Basic Features for the First Version
 
-*   **Scrollable List:** Display all environment variables in a single, clean list that you can scroll through.
-*   **Live Filtering:** As you type, the list should instantly update to show only the variables that match your search.
-*   **Clear Value Display:** Select a variable to see its full, unabbreviated value in a separate, clear area.
+*   **Scrollable List:** Display all environment variables in a single, clean list that you can scroll through using the arrow keys.
+*   **Clear Value Display:** As you scroll, the full, unabbreviated value of the selected variable is shown in a separate panel.
 
 ### Conceptual Mockup
 
-This is the initial goal: a simple, two-panel layout.
+This is the current layout. The filter bar is present but not yet functional.
 
 ```
 ┌───────────────── env-spy ──────────────────────────┐
 │                                                    │
-│ > Filter: USER                                     │
+│ > Filter:                                          │
 │                                                    │
-├────────────────────────────────────────────────────┤
-│ USER                                               │
-│ USERNAME                                           │
-│ SUDO_USER                                          │
-│                                                    │
-│                                                    │
-└────────────────────────────────────────────────────┘
+├─────────────────────┬──────────────────────────────┤
+│ SHELL               │ Value: /bin/bash             │
+│ USERNAME            │                              │
+│ SUDO_USER           │                              │
+│ ...                 │                              │
+│                     │                              │
+└─────────────────────┴──────────────────────────────┘
 
--- Press [Enter] to view value, [Esc] to quit --
+-- Use Arrow Keys to navigate, [Esc] to quit --
 ```
 
-<!--
 ### Tech Stack
 
 *   **Language:** **C**
 *   **TUI Library:** **ncurses**
--->
 
 ### License
 
