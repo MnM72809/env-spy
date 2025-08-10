@@ -2,7 +2,7 @@
 
 | **Author** | **Date**       | **Version** |
 |------------|----------------|-------------|
-| @MnM72809  | 2025-07-24     | 0.1.1       |
+| @MnM72809  | 2025-08-10     | 0.1.2       |
 
 A simple, fast, terminal-based viewer for your environment variables.
 
