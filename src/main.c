@@ -14,12 +14,22 @@ int current_var_index = 0;
 
 #define up_down_process()                                                      \
 	do {                                                                       \
-		werase(windowsPtr->right_pane_win);                                    \
+		/* Clear only inner content window to preserve border */               \
+		werase(windowsPtr->right_inner_win);                                   \
+		/* Redraw outer border */                                              \
 		box(windowsPtr->right_pane_win, 0, 0);                                 \
-		print_key_data();                                                      \
+		/* Refresh border */                                                   \
 		wnoutrefresh(windowsPtr->right_pane_win);                              \
-		print_keys(); /* For highlight	*/                                      \
+		/* Print updated value in inner window */                              \
+		print_key_data();                                                      \
+		/* Print updated keys with highlight */                                \
+		print_keys(); /* For highlight */                                      \
+		/* Refresh left border */                                              \
 		wnoutrefresh(windowsPtr->left_pane_win);                               \
+		/* Move the cursor to the filter window */                             \
+		wmove(windowsPtr->filter_bar_win, 1, 5);                               \
+		/* Refresh filter window */                                            \
+		wnoutrefresh(windowsPtr->filter_bar_win);                              \
 		doupdate();                                                            \
 	} while (0)
 
@@ -76,9 +86,11 @@ int main() {
 	/*list.vars->value);*/
 	/*wrefresh(windows.left_pane_win);*/
 
+	// Initial draw of key list in inner pane
 	print_keys();
-	wmove(windows.left_pane_win, 1, 1);
-	wnoutrefresh(windows.left_pane_win);
+	// Position cursor at first entry of inner window
+	wmove(windows.left_inner_win, 0, 0);
+	wnoutrefresh(windows.left_inner_win);
 	doupdate();
 
 	// Display data
@@ -95,8 +107,11 @@ int main() {
 	clear();
 	refresh();
 
+	// Delete child (inner) windows before outer panes
 	delwin(windows.title_win);
 	delwin(windows.filter_bar_win);
+	delwin(windows.left_inner_win);
+	delwin(windows.right_inner_win);
 	delwin(windows.left_pane_win);
 	delwin(windows.right_pane_win);
 	delwin(windows.status_bar_win);

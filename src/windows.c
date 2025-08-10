@@ -15,6 +15,10 @@ void initialize_ncurses()
 	cbreak();
 	// Enable function keys, arrow keys, etc.
 	keypad(stdscr, TRUE);
+
+	// TEMPORARY
+	// Disable cursor
+	curs_set(0);
 }
 
 AppWindows create_windows()
@@ -50,6 +54,10 @@ AppWindows create_windows()
 	WINDOW *right_pane_win = newwin(right_pane_height, right_pane_width, right_pane_top, left_pane_width);
 	WINDOW *status_bar_win = newwin(status_bar_height, status_bar_width, term_y - status_bar_height, 0);
 
+	// Create inner windows for text printing
+	WINDOW *left_inner_win = derwin(left_pane_win, left_pane_height - 2, left_pane_width - 2, 1, 1);
+	WINDOW *right_inner_win = derwin(right_pane_win, right_pane_height - 2, right_pane_width - 2, 1, 1);
+
 	// Set window borders
 	if (use_borders)
 	{
@@ -66,7 +74,9 @@ AppWindows create_windows()
 		.filter_bar_win = filter_bar_win,
 		.left_pane_win = left_pane_win,
 		.right_pane_win = right_pane_win,
-		.status_bar_win = status_bar_win
+		.status_bar_win = status_bar_win,
+		.left_inner_win = left_inner_win,
+		.right_inner_win = right_inner_win
 	};
 
 	return app_windows;
@@ -75,12 +85,13 @@ AppWindows create_windows()
 void initialize_windows(AppWindows *windows)
 {
     // Print a msg in the title bar
-	mvwprintw(windows->title_win, 1, 2, "Title");
+	mvwprintw(windows->title_win, 1, 2, "ENV-SPY");
 
 	// Print a msg in the status bar
 	mvwprintw(windows->status_bar_win, 0, 1, "Press [Esc] to quit");
 
 	// Filter init function
+	// TODO: Implement filter
 	filter_setup(windows->filter_bar_win);
 
 

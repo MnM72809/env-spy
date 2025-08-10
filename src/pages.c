@@ -11,25 +11,25 @@ extern int current_var_index;
 void print_keys() {
 	// Iterate through the env vars to print them
 	if (evlist == NULL || evlist->count <= 0) {
-		wprintw(windowsPtr->left_pane_win, "No environment variables found.\n");
-		wnoutrefresh(windowsPtr->left_pane_win);
+		wprintw(windowsPtr->left_inner_win, "No environment variables found.\n");
+		wnoutrefresh(windowsPtr->left_inner_win);
 		return;
 	}
 
 	for (int i = 0; i < evlist->count; i++) {
 		char *key_to_print = evlist->vars[i].key;
-		wmove(windowsPtr->left_pane_win, i + 1, 1);
+		wmove(windowsPtr->left_inner_win, i + 0, 0);
 		// Highlight the key if it's currently selected
 		if (i == current_var_index) {
-			wattron(windowsPtr->left_pane_win, A_REVERSE);
+			wattron(windowsPtr->left_inner_win, A_REVERSE);
 		}
 		// Print the key
-		wprintw(windowsPtr->left_pane_win, "%s", key_to_print);
+		wprintw(windowsPtr->left_inner_win, "%s", key_to_print);
 		// Turn off the highlight
 		if (i == current_var_index) {
-			wattroff(windowsPtr->left_pane_win, A_REVERSE);
+			wattroff(windowsPtr->left_inner_win, A_REVERSE);
 		}
-		wnoutrefresh(windowsPtr->left_pane_win);
+		wnoutrefresh(windowsPtr->left_inner_win);
 	}
 
 	box(windowsPtr->left_pane_win, 0, 0);
@@ -38,17 +38,17 @@ void print_keys() {
 void print_key_data() {
 	// Print the data of the currently selected key
 	if (evlist == NULL || evlist->count <= 0) {
-		wprintw(windowsPtr->right_pane_win,
+		wprintw(windowsPtr->right_inner_win,
 		        "No environment variables found.\n");
-		wnoutrefresh(windowsPtr->right_pane_win);
+		wnoutrefresh(windowsPtr->right_inner_win);
 		return;
 	}
 
 	// Check if current_var_index is valid
 	if (current_var_index > evlist->count - 1 || current_var_index < 0) {
-		wprintw(windowsPtr->right_pane_win,
+		wprintw(windowsPtr->right_inner_win,
 		        "Error: Invalid current key index.\n");
-		wnoutrefresh(windowsPtr->right_pane_win);
+		wnoutrefresh(windowsPtr->right_inner_win);
 		return;
 	}
 
@@ -56,8 +56,8 @@ void print_key_data() {
 	/*snprintf(dataToPrint, sizeof(dataToPrint), "Value: %s",*/
 	/*evlist->vars[current_var_index].value);*/
 
-	wmove(windowsPtr->right_pane_win, 1, 1);
-	wprintw(windowsPtr->right_pane_win, "Value: %s",
+	wmove(windowsPtr->right_inner_win, 0, 0);
+	wprintw(windowsPtr->right_inner_win, "Value: %s",
 	        evlist->vars[current_var_index].value);
-	wnoutrefresh(windowsPtr->right_pane_win);
+	wnoutrefresh(windowsPtr->right_inner_win);
 }

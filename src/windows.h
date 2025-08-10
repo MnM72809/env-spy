@@ -7,6 +7,8 @@ typedef struct {
     WINDOW *left_pane_win;
 	WINDOW *right_pane_win;
 	WINDOW *status_bar_win;
+	WINDOW *left_inner_win;
+	WINDOW *right_inner_win;
 } AppWindows;
 
 
