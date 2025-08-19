@@ -1,9 +1,7 @@
+#include "windows.h"
+#include "filter.h"
 #include <ncurses.h>
 #include <stdbool.h>
-
-#include "filter.h"
-#include "log.h"
-#include "windows.h"
 
 void initialize_ncurses()
 {
@@ -113,5 +111,5 @@ void mv_cursor(WINDOW *win, int x, int y)
 {
 	wmove(win, y, x + 10);
 	wrefresh(win);
-	log_msg("Moved cursor to x: %d, y: %d", x, y);
+	/*log_msg("Moved cursor to x: %d, y: %d", x, y);*/
 }
