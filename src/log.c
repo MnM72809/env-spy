@@ -1,6 +1,7 @@
 #ifdef DEBUG
 #include "log.h"
 #include <stdarg.h>
+#include <stdio.h>
 #include <time.h>
 
 static FILE *log_file = NULL;

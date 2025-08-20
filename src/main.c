@@ -75,8 +75,8 @@ bool main_loop()
 		}
 		else if (filter_handle_key(ch))
 		{
-			/*log_msg("cursor pos: '%d', filter_value: '%s'", filter_cursor_pos,
-			 * filter_value);*/
+			log_msg("cursor pos: '%d', filter_value: '%s'", filter_cursor_pos,
+			 filter_value);
 			continue;
 		}
 	}
@@ -87,6 +87,7 @@ int main()
 {
 	// Init log
 	log_init("envspy.log");
+	log_msg("Test log");
 
 	initialize_ncurses();
 	AppWindows windows = create_windows();

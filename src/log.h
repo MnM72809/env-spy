@@ -2,7 +2,6 @@
 #define LOG_H
 
 #ifdef DEBUG
-#include <stdio.h>
 void log_init(const char *filename);
 void log_close(void);
 void log_msg(const char *fmt, ...);
