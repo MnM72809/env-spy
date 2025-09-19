@@ -95,7 +95,6 @@ void initialize_windows(AppWindows *windows)
 	mvwprintw(windows->status_bar_win, 0, 1, "Press [Esc] to quit");
 
 	// Filter init function
-	// TODO: Implement filter
 	filter_setup(windows->filter_bar_win);
 
 	wnoutrefresh(windows->status_bar_win);

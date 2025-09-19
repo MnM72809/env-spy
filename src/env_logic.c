@@ -9,7 +9,7 @@
 extern AppWindows *windowsPtr;
 
 /*
- * TODO: Implement environment variable loading logic.
+ * TODO: Check if all steps are met
  *
  * Plan:
  * 1.  Define Data Structures:

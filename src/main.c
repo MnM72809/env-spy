@@ -58,8 +58,7 @@ bool main_loop()
 		else if (ch == KEY_UP) // Up arrow key
 		{
 			current_var_index--;
-			if (current_var_index < 0)
-				current_var_index = 0;
+			current_var_index = ensureCurrentVarIndexBounds(current_var_index);
 
 			up_down_process();
 			continue;
@@ -67,8 +66,7 @@ bool main_loop()
 		else if (ch == KEY_DOWN)
 		{
 			current_var_index++;
-			if (current_var_index >= evlist->count)
-				current_var_index = evlist->count - 1;
+			current_var_index = ensureCurrentVarIndexBounds(current_var_index);
 
 			up_down_process();
 			continue;
@@ -122,7 +120,10 @@ int main()
 	bool success = main_loop();
 	if (!success)
 	{
-		// TODO: Handle error
+		clear();
+		refresh();
+		printf("ERROR: something went wrong");
+		log_msg("ERROR: something went wrong in main_loop (success = false)");
 	}
 
 	// Clean up
